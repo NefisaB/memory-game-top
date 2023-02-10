@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,300;1,400&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
+}
+
+.App {
+    height: 100vh;
+    margin: 0;
+    background-image: url("https://mcdn.wallpapersafari.com/medium/12/20/LYNzpX.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    isolation: isolate;
+}
+
+.App::after{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-color: rgb(215, 215, 215);
+    opacity: 0.7;
+}
+
+.header {
+    padding: 20px;
+    text-align: center;
+    color: rgb(73, 21, 21);
+    font-weight: 700;
+}
+
+.header .score {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.header .max {
+    font-size: 1.75rem;
+    text-transform: uppercase;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+.card {
+    max-width: 250px;
+    border-radius: 5px;
+    border: 1px solid rgb(172, 144, 108);
+    text-align: center;
+    background-color: antiquewhite;
+}
+
+.card:hover {
+    transform: scale(103%);
+    box-shadow: 5px 5px 5px 5px rgb(73, 21, 21);
+}
+
+.card > img {
+    width: 100%;
+}
+
+.card > h2 {
+    font-size: 1.25rem;
+    color: rgb(73, 21, 21);
+    text-transform: capitalize;
+}
