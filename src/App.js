@@ -24,6 +24,8 @@ function App() {
   const [maxResult, setMaxResult] = useState(0);
 
   const [clicked, setClicked] = useState([]);
+  const [isOver, setIsOver] = useState(false);
+  const [status, setStatus] = useState("");
 
   function shuffleArray(array) {
     let currentIndex = array.length,  randomIndex;
@@ -36,22 +38,29 @@ function App() {
     return array;
   }
 
+  const isGameOver = () => {
+    if (clicked.length === 12) {
+      setStatus("You won!")
+      setIsOver(true);
+    }
+  }
 
   function onHandleCardClick(id) {
-    setScoreboard(prevState => prevState + 1);
-    
     if (clicked.includes(id)) {
-      clicked.length !== 12 ? alert('You lost'): alert('You won!');
-      resetGame();
+      setStatus("You lost!");
+      setIsOver(true);
     } else {
       clicked.push(id);
+      setScoreboard(clicked.length);
+      isGameOver();
       setPokemons(prevState => shuffleArray(prevState));
     }
   }
 
   function resetGame() {
+    setIsOver(false);
     if (maxResult < scoreBoard) {
-      setMaxResult(scoreBoard);
+      setMaxResult(clicked.length);
     }
     setScoreboard(0);
     setClicked([]);
@@ -60,6 +69,10 @@ function App() {
 
   return (
     <div className="App">
+      {isOver && <div className="game-over">
+        <h2>{status}</h2>
+        <button onClick={resetGame} >Restart Game!</button>
+      </div>}
       <Header score={scoreBoard} max={maxResult} />
       <Main pokemons={pokemons} handleCardClick={onHandleCardClick} />
     </div>
